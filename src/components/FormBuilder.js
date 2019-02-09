@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import AddIcon from '@atlaskit/icon/glyph/add';
 import LangBtns from './LangBtns/LangBtns';
 import Input from './Input/Input';
-import './Form.css';
+import './FormBuilder.css';
 
-class Form extends Component {
+class FormBuilder extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      selectedLanguage: 'en',
       elements: [
         {
           question: 'Write Your Question',
@@ -17,7 +18,7 @@ class Form extends Component {
           errorMsg: 'Error!!!'
         }
       ]
-    }
+    };
 
     this.addElement = this.addElement.bind(this);
     this.removeElement = this.removeElement.bind(this);
@@ -43,12 +44,18 @@ class Form extends Component {
     }));
   }
 
+  onChangeLanguage(language) {
+    this.setState({ selectedLanguage: language });
+  }
+
   render() {
     const elements = this.state.elements;
 
     return (
       <div className='Container'>
-        <LangBtns />
+        <LangBtns selectedLanguage={this.state.selectedLanguage} 
+          changeLanguage={this.onChangeLanguage}
+        />
         <div className='Form'>
           {elements.length > 0 && elements.map((elem, i) => 
             <Input key={i} type={elem.type} question={elem.question}
@@ -64,4 +71,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default FormBuilder;

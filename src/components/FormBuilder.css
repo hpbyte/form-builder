@@ -43,6 +43,11 @@ body {
   color: #fff;
 }
 
+.Selected {
+  background-color: #2196F3;
+  color: #fff;
+}
+
 .Btn-circle {
   padding: 15px;
   border-radius: 50%;
