@@ -1,0 +1,59 @@
+body {
+  background-color: #eeeeee;
+}
+
+.Container {
+  margin: 1rem 5rem;
+}
+
+.Form {  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Btns {
+  display: flex;
+}
+
+.Btn {
+  margin: 1rem 0.5rem;
+  color: #000;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  border: none;
+}
+
+.Btn-round {
+  padding: 10px 15px 10px 15px;
+  border: 2px solid #2196F3;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.Btn-round:hover {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.Btn-circle {
+  padding: 15px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #2196F3;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.Btn-circle:hover {
+  color: #2196F3;
+  background-color: #fff;
+}

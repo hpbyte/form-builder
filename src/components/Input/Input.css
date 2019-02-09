@@ -1,0 +1,49 @@
+.Element {
+  width: 32rem;
+  height: 9rem;
+  color: #aaa;
+  background: #fff;
+  margin: 1rem;
+  padding: 0.5rem;
+  -webkit-appearance: none;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.Del-element {
+  cursor: pointer;
+  transform: translate(100%, -100%);
+  transition: all 0.3s ease;
+}
+
+.Del-element:hover {
+  color: red;
+}
+
+.Input {
+  display: flex;
+}
+
+.Input > * {
+  width: 15rem;
+  border: none;
+  border-radius: 0;
+  padding: 0 0 0 10px;
+  line-height: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  outline: 0;
+	-webkit-transition: border 0.3s;
+	transition: border 0.3s;
+}
+
+.Input input {
+  border: 3px solid #ddd;
+}
+
+.Input input:focus {
+  border: 3px solid #2196F3;  
+}
+
+.Actions {
+  margin: 0.2rem 0;
+}
