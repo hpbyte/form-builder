@@ -3,7 +3,26 @@ body {
 }
 
 .Container {
+  display: flex;
   margin: 1rem 5rem;
+}
+
+.Left {
+  flex: 1;
+}
+
+.Right {
+  flex: 1;
+}
+
+.Card {
+  margin: 0.5rem 0 0.5rem 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  background: #fdfdfd;
+  border-radius: 5px;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+  max-height: 600px;
+  overflow: scroll;
 }
 
 .Form {  
@@ -14,6 +33,7 @@ body {
 
 .Btns {
   display: flex;
+  margin: 0.3rem;
 }
 
 .Btn {
