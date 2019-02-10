@@ -105,7 +105,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         elements: updatedElements
       };
-    }      
+    }
+    case actionTypes.ITEM_INPUT_CHANGED: {
+      const updatedElements = [...state.elements];
+      const updatedElement = { ...updatedElements[action.elemIndex] };
+      const updatedElementOptionItems = [...updatedElement.option.items];
+      
+      updatedElementOptionItems[action.itemIndex] = action.event.target.value;
+      updatedElement.option.items = updatedElementOptionItems;
+      updatedElements[action.elemIndex] = updatedElement;
+      return {
+        ...state,
+        elements: updatedElements
+      };
+    }  
     default:
       return {
         ...state

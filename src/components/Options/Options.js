@@ -11,17 +11,17 @@ const Select = ({ items }) => (
   </select>
 );
 
-const Checkbox = ({ name, text }) => (
+const Checkbox = ({ name, text, inputChanged }) => (
   <div>
     <input type='checkbox' name={name} className='Checkbox' />
-    <input type='text' value={text} className='Text' onChange={() => alert()} />
+    <input type='text' value={text} className='Text' onChange={inputChanged} />
   </div>
 );
 
-const Radio = ({ name, text }) => (
+const Radio = ({ name, text, inputChanged }) => (
   <div>
     <input type='radio' name={name} className='Radio' />
-    <input type='text' value={text} className='Text' onChange={() => alert()} />
+    <input type='text' value={text} className='Text' onChange={inputChanged} />
   </div>
 );
 
@@ -34,10 +34,12 @@ const Options = props => {
       option = <Select {...props} />;
       break;
     case 'checkbox':
-      option = <Aux>{props.items.map((item, k) => <Checkbox key={k} {...item} />)}</Aux>;
+      option = <Aux>{props.items.map((item, k) => 
+        <Checkbox key={k} {...item} inputChanged={(e) => props.onItemInputChanged(e, elementIndex, k)} />)}</Aux>;
       break;
     case 'radio':
-      option = <Aux>{props.items.map((item, k) => <Radio key={k} {...item} />)}</Aux>;
+      option = <Aux>{props.items.map((item, k) => 
+        <Radio key={k} {...item} inputChanged={(e) => props.onItemInputChanged(e, elementIndex, k)} />)}</Aux>;
       break;
     default:
       break; 
@@ -56,7 +58,8 @@ const Options = props => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onOptionItemAdded: (elemIndex) => dispatch({ type: actionTypes.ADD_OPTION_ITEM, elemIndex }),
-	};
+    onItemInputChanged: (event, elemIndex, itemIndex) => dispatch({ type: actionTypes.ITEM_INPUT_CHANGED, event, elemIndex, itemIndex }),
+  };
 };
 
 export default connect(null, mapDispatchToProps)(Options);
