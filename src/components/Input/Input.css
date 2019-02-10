@@ -52,25 +52,6 @@
   transition: color 0.3s ease;
 }
 
-.Options {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 0.5rem 0;
-  padding: 1rem 0.5rem 0 0.5rem;
-  border-top: 1px solid #ddd;
-}
-
-.Options .Btn {
-  margin: 0;
-  margin-top: 0.5rem;
-  padding: 0;
-  align-self: flex-end;
-  -webkit-transition: color 0.3s ease;
-  transition: color 0.3s ease;
-}
-
-.Actions .Btn:hover,
-.Options .Btn:hover {
+.Actions .Btn:hover {
   color: #2196F3;
 }
