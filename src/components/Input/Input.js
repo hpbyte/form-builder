@@ -40,7 +40,7 @@ const Input = props => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onElementRemoved: (elemIndex) => dispatch({ type: actionTypes.REMOVE_ELEMENT, elemIndex }),
+		onElementRemoved: (elemId) => dispatch({ type: actionTypes.REMOVE_ELEMENT, elemId }),
 		onInputChanged: (event, elemIndex) => dispatch({ type: actionTypes.INPUT_CHANGED, event, elemIndex }),
 		onErrorInputChanged: (event, elemIndex) => dispatch({ type: actionTypes.ERROR_INPUT_CHANGED, event, elemIndex }),
 		onOptionAdded: (optionType, elemIndex) => dispatch({ type: actionTypes.ADD_OPTION, optionType, elemIndex }),

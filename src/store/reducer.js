@@ -4,16 +4,13 @@ const initialState = {
   selectedLanguage: 'en',
   elements: [
     {
+      id: 0,
       value: '',
       type: 'text',
       placeholder: 'Write your question',
       option: {
         type: null,
-        items: [
-          {
-            name: '', value: 'New Item', text: 'New Item'
-          }
-        ]
+        items: []
       },
       error: {
         placeholder: 'Write your error message',
@@ -24,6 +21,7 @@ const initialState = {
 };
 
 const defaultElement = {
+  id: 0,
   value: '',
   type: 'text',
   placeholder: 'Write your question',
@@ -38,7 +36,7 @@ const defaultElement = {
 };
 
 const defaultItem = {
-  name: '', value: 'New Item', text: 'New Item'
+  id: 0, name: '', value: 'New Item', text: 'New Item'
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,12 +44,20 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_ELEMENT:
       return {
         ...state,
-        elements: [...state.elements, defaultElement]
+        elements: [
+          ...state.elements,
+          {
+            ...defaultElement,
+            id: state.elements.length ? state.elements[state.elements.length - 1].id + 1 : 0,
+            option: { ...defaultElement['option'] },
+            error: { ...defaultElement['error'] },
+          }
+        ]
       };
     case actionTypes.REMOVE_ELEMENT:
       return {
         ...state,
-        elements: state.elements.filter((elem, i) => action.elemIndex !== i)
+        elements: state.elements.filter(elem => action.elemId !== elem.id)
       };
     case actionTypes.CHANGE_LANGUAGE:
       return {
@@ -60,7 +66,16 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.INPUT_CHANGED: {
       const updatedElements = [...state.elements];
-      const updatedElement = { ...updatedElements[action.elemIndex] };
+      // to avoid writing updateElement[blah..] repetively
+      const element = updatedElements[action.elemIndex];
+      const updatedElement = {
+        ...element,
+        option: {
+          ...element['option'],
+          items: [...element['option']['items']]
+        },
+        error: {...element['error']}
+      };
 
       updatedElement.value = action.event.target.value;
       updatedElements[action.elemIndex] = updatedElement;
@@ -71,7 +86,16 @@ const reducer = (state = initialState, action) => {
     }      
     case actionTypes.ERROR_INPUT_CHANGED: {
       const updatedElements = [...state.elements];
-      const updatedElement = { ...updatedElements[action.elemIndex] };
+      // to avoid writing updateElement[blah..] repetively
+      const element = updatedElements[action.elemIndex];
+      const updatedElement = {
+        ...element,
+        option: {
+          ...element['option'],
+          items: [...element['option']['items']]
+        },
+        error: {...element['error']}
+      };
 
       updatedElement.error.errorMessage = action.event.target.value;
       updatedElements[action.elemIndex] = updatedElement;
@@ -82,10 +106,19 @@ const reducer = (state = initialState, action) => {
     }      
     case actionTypes.ADD_OPTION: {
       const updatedElements = [...state.elements];
-      const updatedElement = { ...updatedElements[action.elemIndex] };
+      // to avoid writing updateElement[blah..] repetively
+      const element = updatedElements[action.elemIndex];
+      const updatedElement = {
+        ...element,
+        option: {
+          ...element['option'],
+          items: [...element['option']['items']]
+        },
+        error: {...element['error']}
+      };
 
       updatedElement.option.type = action.optionType;
-      updatedElement.option.items = [defaultItem];
+      updatedElement.option.items = [{...defaultItem}];
       updatedElements[action.elemIndex] = updatedElement;
       return {
         ...state,
@@ -94,9 +127,23 @@ const reducer = (state = initialState, action) => {
     }      
     case actionTypes.ADD_OPTION_ITEM: {
       const updatedElements = [...state.elements];
-      const updatedElement = { ...updatedElements[action.elemIndex] };
+      const element = updatedElements[action.elemIndex];
+      const updatedElement = { 
+        ...element,
+        option: {
+          ...element['option'],
+          items: [...element['option']['items']]
+        },
+        error: {...element['error']}
+      };
+      // declared this var to avoid writing updateElement..blah repetively
+      const items = updatedElement.option.items;
       const updatedElementOptionItems = [
-        ...updatedElement.option.items, defaultItem
+        ...items,
+        {
+          ...defaultItem,
+          id: items.length ? items[items.length - 1].id + 1 : 0,
+        }
       ];
       
       updatedElement.option.items = updatedElementOptionItems;
@@ -106,12 +153,47 @@ const reducer = (state = initialState, action) => {
         elements: updatedElements
       };
     }
+    case actionTypes.REMOVE_OPTION_ITEM: {
+      const updatedElements = [...state.elements];
+      // to avoid writing updateElement[blah..] repetively
+      const element = updatedElements[action.elemIndex];
+      const updatedElement = {
+        ...element,
+        option: {
+          ...element['option'],
+          items: [...element['option']['items']]
+        },
+        error: {...element['error']}
+      };
+      const updatedElementOptionItems = element.option.items.filter(item => action.itemId !== item.id);
+      
+      if (updatedElementOptionItems.length === 0) {
+        updatedElement.option.type = null;
+      }
+      updatedElement.option.items = updatedElementOptionItems;
+      updatedElements[action.elemIndex] = updatedElement;
+      return {
+        ...state,
+        elements: updatedElements
+      };
+    }
     case actionTypes.ITEM_INPUT_CHANGED: {
       const updatedElements = [...state.elements];
-      const updatedElement = { ...updatedElements[action.elemIndex] };
-      const updatedElementOptionItems = [...updatedElement.option.items];
+      // to avoid writing updateElement[blah..] repetively
+      const element = updatedElements[action.elemIndex];
+      const updatedElement = {
+        ...element,
+        option: {
+          ...element['option'],
+          items: [...element['option']['items']]
+        },
+        error: {...element['error']}
+      };
+      const updatedElementOptionItems = [...element.option.items];
       
-      updatedElementOptionItems[action.itemIndex] = action.event.target.value;
+      updatedElementOptionItems[action.itemIndex].name = action.event.target.value;
+      updatedElementOptionItems[action.itemIndex].value = action.event.target.value;
+      updatedElementOptionItems[action.itemIndex].text = action.event.target.value;
       updatedElement.option.items = updatedElementOptionItems;
       updatedElements[action.elemIndex] = updatedElement;
       return {
