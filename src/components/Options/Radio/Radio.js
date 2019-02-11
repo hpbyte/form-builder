@@ -1,10 +1,13 @@
 import React from 'react';
 import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
+import './Radio.css';
 
-const Radio = ({ name, text, value, inputChanged, removeItem }) => (
-  <div>
-    <input type='radio' name={name} className='Radio' value={value} />
-    <input type='text' value={text} className='Text' onChange={inputChanged} />
+const Radio = ({ id, name, text, value, inputChanged, removeItem }) => (
+  <div className='Radio'>
+    <input type='radio' name={name} value={value} id={'rad'+id} />
+    <label for={'rad'+id}>
+      <input type='text' value={text} className='Text' onChange={inputChanged} />
+    </label>
     <button className='Btn' onClick={removeItem}><EditorErrorIcon /></button>
   </div>
 );

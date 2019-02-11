@@ -1,11 +1,14 @@
 import React from 'react';
 import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
+import './Checkbox.css';
 
-const Checkbox = ({ name, text, inputChanged, removeItem }) => (
-  <div>
-    <input type='checkbox' name={name} className='Checkbox' />
-    <input type='text' value={text} className='Text' onChange={inputChanged} />
-    <button className='Btn' onClick={removeItem}><EditorErrorIcon /></button>
+const Checkbox = ({ id, name, text, inputChanged, removeItem }) => (
+  <div className='Checkbox'>
+    <input type='checkbox' name={name} id={'chk'+id} />
+    <label for={'chk'+id}>
+      <input type='text' value={text} className='Text' onChange={inputChanged} />
+    </label>
+    <button className='Btn Del-item' onClick={removeItem}><EditorErrorIcon /></button>
   </div>
 );
 

@@ -26,8 +26,8 @@
   border: none;
   border-radius: 0;
   padding: 0 0 0 10px;
-  line-height: 50px;
-  font-size: 1rem;
+  line-height: 2.5rem;
+  font-size: 0.9rem;
   font-weight: bold;
   outline: 0;
 	-webkit-transition: border 0.3s;
@@ -40,6 +40,7 @@
 
 .Input input:focus {
   border: 3px solid #2196F3;  
+  box-shadow: 2px 2px 8px #e0f8ff
 }
 
 .Actions {

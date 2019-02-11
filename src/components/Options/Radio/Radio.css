@@ -1,0 +1,54 @@
+.Radio input[type="radio"] {
+  display: none;
+}
+
+.Radio label::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid;
+  border-radius: 100%;
+  cursor: pointer;
+  padding: 1px;
+}
+
+.Radio label::after {
+  content: '';
+  padding: 1px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #2196F3;
+}
+
+.Radio label {
+  position: relative;
+}
+
+.Radio label::before,
+.Radio label::after {
+  position: absolute;
+}
+
+/* Outer box */
+.Radio label::before {
+  top: 3px;
+}
+
+/* Checkmark */
+.Radio label::after {
+  left: 4px;
+  top: 6px;
+}
+
+/* Hide the checkmark by default */
+.Radio input[type="radio"] + label::after {
+  content: none;
+}
+
+/* Unhide the checkmark when checked */
+.Radio input[type="radio"]:checked + label::after {
+  content: '';
+}

@@ -118,7 +118,9 @@ const reducer = (state = initialState, action) => {
       };
 
       updatedElement.option.type = action.optionType;
-      updatedElement.option.items = [{...defaultItem}];
+      if (action.optionType !== 'select') {
+        updatedElement.option.items = [{...defaultItem}];
+      }
       updatedElements[action.elemIndex] = updatedElement;
       return {
         ...state,
@@ -191,7 +193,11 @@ const reducer = (state = initialState, action) => {
       };
       const updatedElementOptionItems = [...element.option.items];
       
-      updatedElementOptionItems[action.itemIndex].name = action.event.target.value;
+      if (element.option.type !== 'radio') {
+        updatedElementOptionItems[action.itemIndex].name = action.event.target.value;
+      } else {
+        updatedElementOptionItems[action.itemIndex].name = 'radioBtn';        
+      }
       updatedElementOptionItems[action.itemIndex].value = action.event.target.value;
       updatedElementOptionItems[action.itemIndex].text = action.event.target.value;
       updatedElement.option.items = updatedElementOptionItems;
