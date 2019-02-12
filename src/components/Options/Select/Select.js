@@ -5,7 +5,7 @@ import InlineEdit, { SingleLineTextInput } from '@atlaskit/inline-edit';
 
 import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
 
-const select = ({ items, elemId, inputChanged, removeItem }) => (
+const select = ({ items, elemIndex, inputChanged, removeItem }) => (
   <div className='Select'>
     <Select
       className="single-select"
@@ -14,7 +14,7 @@ const select = ({ items, elemId, inputChanged, removeItem }) => (
       placeholder="Select"
     />
     <div className='SelItems'>
-      {items.map(item => (
+      {items.map((item, i) => (
         <div className='SelItem'>
           <div className='InlineEdit'>
             <InlineEdit
@@ -23,7 +23,7 @@ const select = ({ items, elemId, inputChanged, removeItem }) => (
                   isEditing
                   isInitiallySelected
                   value={item.value}
-                  onChange={(e) => inputChanged(e, elemId, item.id)}
+                  onChange={(e) => inputChanged(e, elemIndex, i)}
                 />
               }
               readView={<SingleLineTextInput isEditing={false} value={item.value} />}
@@ -33,7 +33,7 @@ const select = ({ items, elemId, inputChanged, removeItem }) => (
             appearance='subtle-link' 
             className='DelItem' 
             iconBefore={<EditorErrorIcon />} 
-            onClick={() => removeItem(elemId, item.id)}
+            onClick={() => removeItem(elemIndex, item.id)}
           />
         </div>
       ))}

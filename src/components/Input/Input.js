@@ -13,15 +13,16 @@ import './Input.css';
 
 const Input = props => {
   const elementId = props.config.id;
+  const elementIndex = props.elemIndex;
   const optionType = props.config.option.type;
   
   let inputElement = <Textfield
     placeholder={props.config.placeholder}
-    onChange={(e) => props.onInputChanged(e, elementId)} />;;
+    onChange={(e) => props.onInputChanged(e, elementIndex)} />;;
 
   let onErrorShowMessage = <Textfield
     placeholder={props.config.error.placeholder}
-    onChange={(e) => props.onErrorInputChanged(e, elementId)} />;
+    onChange={(e) => props.onErrorInputChanged(e, elementIndex)} />;
 
   return (
     <div className='Element'>
@@ -32,11 +33,11 @@ const Input = props => {
       </div>
       <div className='Actions'>
         <p>Choose one of reply options</p>
-        <Button appearance='subtle' iconBefore={<EditorBulletListIcon />} className='Btn' onClick={() => props.onOptionAdded('select', elementId)} />
-        <Button appearance='subtle' iconBefore={<TaskIcon />} className='Btn' onClick={() => props.onOptionAdded('checkbox', elementId)} />
-        <Button appearance='subtle' iconBefore={<EmojiProductivityIcon />} className='Btn' onClick={() => props.onOptionAdded('radio', elementId)} />
+        <Button appearance='subtle' iconBefore={<EditorBulletListIcon />} className='Btn' onClick={() => props.onOptionAdded('select', elementIndex)} />
+        <Button appearance='subtle' iconBefore={<TaskIcon />} className='Btn' onClick={() => props.onOptionAdded('checkbox', elementIndex)} />
+        <Button appearance='subtle' iconBefore={<EmojiProductivityIcon />} className='Btn' onClick={() => props.onOptionAdded('radio', elementIndex)} />
       </div>
-      {optionType && <Options type={optionType} items={props.config.option.items} elemId={elementId} />}
+      {optionType && <Options type={optionType} items={props.config.option.items} elemIndex={elementIndex} />}
     </div>
   );
 }
@@ -44,9 +45,9 @@ const Input = props => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onElementRemoved: (elemId) => dispatch({ type: actionTypes.REMOVE_ELEMENT, elemId }),
-		onInputChanged: (event, elemId) => dispatch({ type: actionTypes.INPUT_CHANGED, event, elemId }),
-		onErrorInputChanged: (event, elemId) => dispatch({ type: actionTypes.ERROR_INPUT_CHANGED, event, elemId }),
-		onOptionAdded: (optionType, elemId) => dispatch({ type: actionTypes.ADD_OPTION, optionType, elemId }),
+		onInputChanged: (event, elemIndex) => dispatch({ type: actionTypes.INPUT_CHANGED, event, elemIndex }),
+		onErrorInputChanged: (event, elemIndex) => dispatch({ type: actionTypes.ERROR_INPUT_CHANGED, event, elemIndex }),
+		onOptionAdded: (optionType, elemIndex) => dispatch({ type: actionTypes.ADD_OPTION, optionType, elemIndex }),
 	};
 };
 

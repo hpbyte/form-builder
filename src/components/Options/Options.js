@@ -11,7 +11,7 @@ import Radio from './Radio/Radio';
 import './Options.css';
 
 const Options = props => {
-  const elementId = props.elemId;
+  const elementIndex = props.elemIndex;
   let option;
 
   switch(props.type) {
@@ -21,14 +21,14 @@ const Options = props => {
         removeItem={props.onOptionItemRemoved} />;
       break;
     case 'checkbox':
-      option = (<Aux>{props.items.map(item => <Checkbox key={item.id} {...item} 
-        inputChanged={(e) => props.onItemInputChanged(e, elementId, item.id)}
-        removeItem={() => props.onOptionItemRemoved(elementId, item.id)} />)}</Aux>);
+      option = (<Aux>{props.items.map((item, i) => <Checkbox key={item.id} {...item} 
+        inputChanged={(e) => props.onItemInputChanged(e, elementIndex, i)}
+        removeItem={() => props.onOptionItemRemoved(elementIndex, item.id)} />)}</Aux>);
       break;
     case 'radio':
-      option = (<Aux>{props.items.map(item => <Radio key={item.id} {...item} 
-        inputChanged={(e) => props.onItemInputChanged(e, elementId, item.id)}
-        removeItem={() => props.onOptionItemRemoved(elementId, item.id)} />)}</Aux>);
+      option = (<Aux>{props.items.map((item, i) => <Radio key={item.id} {...item} 
+        inputChanged={(e) => props.onItemInputChanged(e, elementIndex, i)}
+        removeItem={() => props.onOptionItemRemoved(elementIndex, item.id)} />)}</Aux>);
       break;
     default:
       break; 
@@ -37,16 +37,16 @@ const Options = props => {
   return (
     <div className='Options'>
       {option}
-      <Button appearance='subtle' iconBefore={<AddCircleIcon />} className='Btn' onClick={() => props.onOptionItemAdded(elementId)} />
+      <Button appearance='subtle' iconBefore={<AddCircleIcon />} className='Btn' onClick={() => props.onOptionItemAdded(elementIndex)} />
     </div> 
   );
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onOptionItemAdded: (elemId) => dispatch({ type: actionTypes.ADD_OPTION_ITEM, elemId }),
-    onOptionItemRemoved: (elemId, itemId) => dispatch({ type: actionTypes.REMOVE_OPTION_ITEM, elemId, itemId }),
-    onItemInputChanged: (event, elemId, itemIndex) => dispatch({ type: actionTypes.ITEM_INPUT_CHANGED, event, elemId, itemIndex }),
+		onOptionItemAdded: (elemIndex) => dispatch({ type: actionTypes.ADD_OPTION_ITEM, elemIndex }),
+    onOptionItemRemoved: (elemIndex, itemId) => dispatch({ type: actionTypes.REMOVE_OPTION_ITEM, elemIndex, itemId }),
+    onItemInputChanged: (event, elemIndex, itemIndex) => dispatch({ type: actionTypes.ITEM_INPUT_CHANGED, event, elemIndex, itemIndex }),
   };
 };
 
