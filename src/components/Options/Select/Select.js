@@ -1,11 +1,44 @@
 import React from 'react';
+import Select from '@atlaskit/select';
+import Button from '@atlaskit/button';
+import InlineEdit, { SingleLineTextInput } from '@atlaskit/inline-edit';
 
-const Select = ({ items }) => (
+import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
+
+const select = ({ items, elemId, inputChanged, removeItem }) => (
   <div className='Select'>
-    <select name='select'>
-      {items.map((item, k) => <option key={k} value={item.value}>{item.text}</option>)}
-    </select>
+    <Select
+      className="single-select"
+      classNamePrefix="react-select"
+      options={items.map(item => ({ label: item.text, value: item.value }))}
+      placeholder="Select"
+    />
+    <div className='SelItems'>
+      {items.map(item => (
+        <div className='SelItem'>
+          <div className='InlineEdit'>
+            <InlineEdit
+              editView={
+                <SingleLineTextInput
+                  isEditing
+                  isInitiallySelected
+                  value={item.value}
+                  onChange={(e) => inputChanged(e, elemId, item.id)}
+                />
+              }
+              readView={<SingleLineTextInput isEditing={false} value={item.value} />}
+            />
+          </div>
+          <Button
+            appearance='subtle-link' 
+            className='DelItem' 
+            iconBefore={<EditorErrorIcon />} 
+            onClick={() => removeItem(elemId, item.id)}
+          />
+        </div>
+      ))}
+    </div>
   </div>
 );
 
-export default Select;
+export default select;

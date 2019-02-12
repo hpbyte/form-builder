@@ -1,15 +1,16 @@
 .Element {
-  color: #aaa;
+  color: #727272;
   background: #fff;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 0.5rem;
+  border-radius: 0 15px 0 15px;
   -webkit-appearance: none;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.3);
 }
 
 .Del-element {
   cursor: pointer;
-  transform: translate(-3%, -100%);
+  transform: translate(-5%, -100%);
   transition: all 0.3s ease;
 }
 
@@ -19,9 +20,14 @@
 
 .Input {
   display: flex;
+  margin-bottom: 1.5rem;
 }
 
-.Input > * {
+.InputErr {
+  margin-left: 1rem;
+}
+
+/* .Input > * {
   width: 15rem;
   border: none;
   border-radius: 0;
@@ -32,7 +38,7 @@
   outline: 0;
 	-webkit-transition: border 0.3s;
 	transition: border 0.3s;
-}
+} 
 
 .Input input {
   border: 3px solid #ddd;
@@ -43,16 +49,17 @@
   box-shadow: 2px 2px 8px #e0f8ff
 }
 
+*/
 .Actions {
-  margin: 0.2rem 0;
+  margin: 1rem 0;
 }
-
+  
 .Actions .Btn {
-  margin: 0.2rem;
-  -webkit-transition: color 0.3s ease;
+  /* margin: 0.2rem; */
+ -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
 }
 
 .Actions .Btn:hover {
-  color: #2196F3;
+  color: #2196F3 !important;
 }

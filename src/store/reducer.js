@@ -67,7 +67,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.INPUT_CHANGED: {
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
-      const element = updatedElements[action.elemIndex];
+      const element = updatedElements[action.elemId];
       const updatedElement = {
         ...element,
         option: {
@@ -78,7 +78,7 @@ const reducer = (state = initialState, action) => {
       };
 
       updatedElement.value = action.event.target.value;
-      updatedElements[action.elemIndex] = updatedElement;
+      updatedElements[action.elemId] = updatedElement;
       return {
         ...state,
         elements: updatedElements
@@ -87,7 +87,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ERROR_INPUT_CHANGED: {
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
-      const element = updatedElements[action.elemIndex];
+      const element = updatedElements[action.elemId];
       const updatedElement = {
         ...element,
         option: {
@@ -98,7 +98,7 @@ const reducer = (state = initialState, action) => {
       };
 
       updatedElement.error.errorMessage = action.event.target.value;
-      updatedElements[action.elemIndex] = updatedElement;
+      updatedElements[action.elemId] = updatedElement;
       return {
         ...state,
         elements: updatedElements
@@ -107,7 +107,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_OPTION: {
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
-      const element = updatedElements[action.elemIndex];
+      const element = updatedElements[action.elemId];
       const updatedElement = {
         ...element,
         option: {
@@ -118,10 +118,8 @@ const reducer = (state = initialState, action) => {
       };
 
       updatedElement.option.type = action.optionType;
-      if (action.optionType !== 'select') {
-        updatedElement.option.items = [{...defaultItem}];
-      }
-      updatedElements[action.elemIndex] = updatedElement;
+      updatedElement.option.items = [{...defaultItem}];
+      updatedElements[action.elemId] = updatedElement;
       return {
         ...state,
         elements: updatedElements
@@ -129,7 +127,7 @@ const reducer = (state = initialState, action) => {
     }      
     case actionTypes.ADD_OPTION_ITEM: {
       const updatedElements = [...state.elements];
-      const element = updatedElements[action.elemIndex];
+      const element = updatedElements[action.elemId];
       const updatedElement = { 
         ...element,
         option: {
@@ -149,7 +147,7 @@ const reducer = (state = initialState, action) => {
       ];
       
       updatedElement.option.items = updatedElementOptionItems;
-      updatedElements[action.elemIndex] = updatedElement;
+      updatedElements[action.elemId] = updatedElement;
       return {
         ...state,
         elements: updatedElements
@@ -158,7 +156,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.REMOVE_OPTION_ITEM: {
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
-      const element = updatedElements[action.elemIndex];
+      const element = updatedElements[action.elemId];
       const updatedElement = {
         ...element,
         option: {
@@ -173,7 +171,7 @@ const reducer = (state = initialState, action) => {
         updatedElement.option.type = null;
       }
       updatedElement.option.items = updatedElementOptionItems;
-      updatedElements[action.elemIndex] = updatedElement;
+      updatedElements[action.elemId] = updatedElement;
       return {
         ...state,
         elements: updatedElements
@@ -182,7 +180,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ITEM_INPUT_CHANGED: {
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
-      const element = updatedElements[action.elemIndex];
+      const element = updatedElements[action.elemId];
       const updatedElement = {
         ...element,
         option: {
@@ -201,7 +199,7 @@ const reducer = (state = initialState, action) => {
       updatedElementOptionItems[action.itemIndex].value = action.event.target.value;
       updatedElementOptionItems[action.itemIndex].text = action.event.target.value;
       updatedElement.option.items = updatedElementOptionItems;
-      updatedElements[action.elemIndex] = updatedElement;
+      updatedElements[action.elemId] = updatedElement;
       return {
         ...state,
         elements: updatedElements

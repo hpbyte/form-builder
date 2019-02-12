@@ -1,15 +1,30 @@
 import React from 'react';
-import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
-import './Checkbox.css';
+import { Checkbox } from '@atlaskit/checkbox';
+import Button from '@atlaskit/button';
+import InlineEdit, { SingleLineTextInput } from '@atlaskit/inline-edit';
 
-const Checkbox = ({ id, name, text, inputChanged, removeItem }) => (
-  <div className='Checkbox'>
-    <input type='checkbox' name={name} id={'chk'+id} />
-    <label for={'chk'+id}>
-      <input type='text' value={text} className='Text' onChange={inputChanged} />
-    </label>
-    <button className='Btn Del-item' onClick={removeItem}><EditorErrorIcon /></button>
+import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
+
+const checkbox = ({ id, name, text, value, inputChanged, removeItem }) => (
+  <div className='OptionItem'>
+    <div className='Item'>
+      <Checkbox name={name} />
+    </div>
+    <div className='InlineEdit'>
+      <InlineEdit
+        editView={
+          <SingleLineTextInput
+            isEditing
+            isInitiallySelected
+            value={value}
+            onChange={inputChanged}
+          />
+        }
+        readView={<SingleLineTextInput isEditing={false} value={value} />}
+      />
+    </div>
+    <Button appearance='subtle-link' className='DelItem' iconBefore={<EditorErrorIcon />} onClick={removeItem} />
   </div>
 );
 
-export default Checkbox;
+export default checkbox;

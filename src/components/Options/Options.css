@@ -1,44 +1,69 @@
-.Options {
+ .Options {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   margin: 0.5rem 0;
   padding: 1rem 0.5rem 0 0.5rem;
-  border-top: 1px solid #ddd;
+  border-top: 0.5px solid #ddd;
 }
 
 .Options .Btn {
   margin: 0;
   margin-top: 0.5rem;
-  padding: 0;
   align-self: flex-end;
-  -webkit-transition: color 0.3s ease;
-  transition: color 0.3s ease;
+  /* -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease; */
 }
 
 .Options .Btn:hover {
-  color: #2196F3;
+  color: #2196F3 !important;
 }
 
-.Options .Del-item {
-  color: #ccc;
+.OptionItem {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.Options .Del-item:hover {
+.Item {
+  padding-top: 0.9rem;
+}
+
+.InlineEdit {
+  flex-basis: 10rem;
+  margin-left: 1rem;
+}
+
+.DelItem {
+  padding-top: 1rem;
+}
+
+.DelItem:hover {
   color: red !important;
 }
 
 .Select {
-  border: none;
-  outline: none;
-  height: 40px;
-  padding: 0.5rem;
-  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.SelItems {
+  width: 12rem;
+  margin: 0.2rem 0.5rem;
+}
+
+.SelItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.SelItem .InlineEdit {
+  flex-basis: 12rem;
+  margin-left: 0;
 }
 
 .Text {
   font-size: 0.85rem;
   border: none;
-  margin-left: 1.5rem;
+  /* margin-left: 1.5rem; */
   padding: 0.3rem;
-}
+} 

@@ -3,51 +3,59 @@ body {
 }
 
 .Container {
-  display: flex;
-  margin: 1rem 5rem;
+  /* display: flex; */
+  margin: 1rem 0;
 }
-
+/* 
 .Left {
   flex: 1;
 }
 
 .Right {
   flex: 1;
-}
+} */
 
 .Card {
-  margin: 0.5rem 0 0.5rem 1rem;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  /* margin: 0.5rem 0 0.5rem 1rem; */
+  padding: 1rem;
+  color: #505050;
   background: #fdfdfd;
-  border-radius: 5px;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
-  /* max-height: 600px; */
-  overflow: auto;
+  border-radius: 0 15px 0 15px;
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.3);
+  /* max-height: 600px; 
+  overflow: auto;*/
 }
 
 .Form {  
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  margin: 1rem 0;
+  /* justify-content: center; */
+}
+
+.MarY {
+  margin: 1rem 0;
 }
 
 .Btns {
   display: flex;
-  margin: 0.3rem;
+  margin: 1rem 0;
+  align-items: center;
 }
 
 .Btn {
-  margin: 1rem 0.5rem;
-  color: #000;
-  background-color: #fff;
-  cursor: pointer;
+  margin: 0 0.2rem;
+  /* color: #000;
+  background-color: #fff; */
+  /* cursor: pointer;
   outline: none;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
-  border: none;
-}
+  border: none; */
+} 
 
+/* 
 .Btn-round {
   padding: 10px 15px 10px 15px;
   border: 2px solid #2196F3;
@@ -81,4 +89,5 @@ body {
 .Btn-circle:hover {
   color: #2196F3;
   background-color: #fff;
-}
+} 
+*/

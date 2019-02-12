@@ -1,13 +1,11 @@
 import React from 'react';
+import Button from '@atlaskit/button';
 
 const LangBtns = props => (
   <div className='Btns'>
-    <button className='Btn Btn-round'
-      onClick={() => props.changeLanguage('my')} >Unicode</button>
-    <button className='Btn Btn-round'
-      onClick={() => props.changeLanguage('my_zg')}>Zawgyi</button>
-    <button className='Btn Btn-round'
-      onClick={() => props.changeLanguage('en')}>English</button>
+    <Button className='Btn' onClick={() => props.changeLanguage('my')} >Unicode</Button>
+    <Button className='Btn' onClick={() => props.changeLanguage('my_zg')}>Zawgyi</Button>
+    <Button className='Btn' onClick={() => props.changeLanguage('en')}>English</Button>
   </div>
 );
 
