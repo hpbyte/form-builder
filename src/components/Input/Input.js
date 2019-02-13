@@ -17,10 +17,12 @@ const Input = props => {
   const optionType = props.config.option.type;
   
   let inputElement = <Textfield
+    value={props.config.value[props.selectedLang]}
     placeholder={props.config.placeholder}
     onChange={(e) => props.onInputChanged(e, elementIndex)} />;;
 
   let onErrorShowMessage = <Textfield
+    value={props.config.error.errorMessage[props.selectedLang]}
     placeholder={props.config.error.placeholder}
     onChange={(e) => props.onErrorInputChanged(e, elementIndex)} />;
 
@@ -28,7 +30,7 @@ const Input = props => {
     <div className='Element'>
       <div onClick={() => props.onElementRemoved(elementId)} className='Del-element'><CrossCircleIcon /></div>
       <div className='Input'>
-        <div>{inputElement}</div> 
+        <div className='InputQuiz'>{inputElement}</div> 
         <div className='InputErr'>{onErrorShowMessage}</div>
       </div>
       <div className='Actions'>
@@ -42,6 +44,10 @@ const Input = props => {
   );
 }
 
+const mapStateToProps = state => ({
+  selectedLang: state.selectedLanguage
+});
+
 const mapDispatchToProps = dispatch => {
 	return {
 		onElementRemoved: (elemId) => dispatch({ type: actionTypes.REMOVE_ELEMENT, elemId }),
@@ -51,4 +57,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(null, mapDispatchToProps)(Input);
+export default connect(mapStateToProps, mapDispatchToProps)(Input);

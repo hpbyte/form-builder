@@ -5,7 +5,7 @@ import InlineEdit, { SingleLineTextInput } from '@atlaskit/inline-edit';
 
 import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
 
-const radio = ({ id, name, text, value, inputChanged, removeItem }) => (
+const radio = ({ id, name, text, selectedLang, value, inputChanged, removeItem }) => (
   <div className='OptionItem'>
     <div className='Item'>
       <Radio name={name} />
@@ -16,11 +16,11 @@ const radio = ({ id, name, text, value, inputChanged, removeItem }) => (
           <SingleLineTextInput
             isEditing
             isInitiallySelected
-            value={value}
+            value={value[selectedLang]}
             onChange={inputChanged}
           />
         }
-        readView={<SingleLineTextInput isEditing={false} value={value} />}
+        readView={<SingleLineTextInput isEditing={false} value={value[selectedLang]} />}
       />
     </div>
     <Button appearance='subtle-link' className='DelItem' iconBefore={<EditorErrorIcon />} onClick={removeItem} />

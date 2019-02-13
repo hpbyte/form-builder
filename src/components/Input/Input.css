@@ -23,7 +23,12 @@
   margin-bottom: 1.5rem;
 }
 
+.InputQuiz {
+  flex: 1;
+}
+
 .InputErr {
+  flex: 1;
   margin-left: 1rem;
 }
 

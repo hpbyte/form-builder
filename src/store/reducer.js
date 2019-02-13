@@ -5,7 +5,11 @@ const initialState = {
   elements: [
     {
       id: 0,
-      value: '',
+      value: {
+        'en': '',
+        'my': '',
+        'my_zg': '',
+      },
       type: 'text',
       placeholder: 'Write your question',
       option: {
@@ -14,7 +18,11 @@ const initialState = {
       },
       error: {
         placeholder: 'Write your error message',
-        errorMessage: ''
+        errorMessage: {
+          'en': '',
+          'my': '',
+          'my_zg': '',
+        }
       }
     }
   ]
@@ -22,7 +30,11 @@ const initialState = {
 
 const defaultElement = {
   id: 0,
-  value: '',
+  value: {
+    'en': '',
+    'my': '',
+    'my_zg': '',
+  },
   type: 'text',
   placeholder: 'Write your question',
   option: {
@@ -31,12 +43,27 @@ const defaultElement = {
   },
   error: {
     placeholder: 'Write your error message',
-    errorMessage: ''
+    errorMessage: {
+      'en': '',
+      'my': '',
+      'my_zg': '',
+    }
   }
 };
 
 const defaultItem = {
-  id: 0, name: '', value: 'New Item', text: 'New Item'
+  id: 0,
+  name: '',
+  value: {
+    'en': 'New Item',
+    'my': 'New Item',
+    'my_zg': 'New Item',
+  },
+  text: {
+    'en': 'New Item',
+    'my': 'New Item',
+    'my_zg': 'New Item',
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -65,11 +92,13 @@ const reducer = (state = initialState, action) => {
         selectedLanguage: action.language
       };
     case actionTypes.INPUT_CHANGED: {
+      const selectedLang = state.selectedLanguage;
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
       const element = updatedElements[action.elemIndex];
       const updatedElement = {
         ...element,
+        value: {...element['value']},
         option: {
           ...element['option'],
           items: [...element['option']['items']]
@@ -77,7 +106,7 @@ const reducer = (state = initialState, action) => {
         error: {...element['error']}
       };
 
-      updatedElement.value = action.event.target.value;
+      updatedElement.value[selectedLang] = action.event.target.value;
       updatedElements[action.elemIndex] = updatedElement;
       return {
         ...state,
@@ -85,11 +114,13 @@ const reducer = (state = initialState, action) => {
       };
     }      
     case actionTypes.ERROR_INPUT_CHANGED: {
+      const selectedLang = state.selectedLanguage;
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
       const element = updatedElements[action.elemIndex];
       const updatedElement = {
         ...element,
+        value: {...element['value']},
         option: {
           ...element['option'],
           items: [...element['option']['items']]
@@ -97,7 +128,7 @@ const reducer = (state = initialState, action) => {
         error: {...element['error']}
       };
 
-      updatedElement.error.errorMessage = action.event.target.value;
+      updatedElement.error.errorMessage[selectedLang] = action.event.target.value;
       updatedElements[action.elemIndex] = updatedElement;
       return {
         ...state,
@@ -118,7 +149,11 @@ const reducer = (state = initialState, action) => {
       };
 
       updatedElement.option.type = action.optionType;
-      updatedElement.option.items = [{...defaultItem}];
+      updatedElement.option.items = [{
+        ...defaultItem,
+        value: {...defaultItem['value']},
+        text: {...defaultItem['text']}
+      }];
       updatedElements[action.elemIndex] = updatedElement;
       return {
         ...state,
@@ -178,6 +213,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     case actionTypes.ITEM_INPUT_CHANGED: {
+      const selectedLang = state.selectedLanguage;
       const updatedElements = [...state.elements];
       // to avoid writing updateElement[blah..] repetively
       const element = updatedElements[action.elemIndex];
@@ -196,8 +232,8 @@ const reducer = (state = initialState, action) => {
       } else {
         updatedElementOptionItems[action.itemIndex].name = 'radioBtn';        
       }
-      updatedElementOptionItems[action.itemIndex].value = action.event.target.value;
-      updatedElementOptionItems[action.itemIndex].text = action.event.target.value;
+      updatedElementOptionItems[action.itemIndex].value[selectedLang] = action.event.target.value;
+      updatedElementOptionItems[action.itemIndex].text[selectedLang] = action.event.target.value;
       updatedElement.option.items = updatedElementOptionItems;
       updatedElements[action.elemIndex] = updatedElement;
       return {

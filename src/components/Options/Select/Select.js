@@ -5,7 +5,7 @@ import InlineEdit, { SingleLineTextInput } from '@atlaskit/inline-edit';
 
 import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
 
-const select = ({ items, elemIndex, inputChanged, removeItem }) => (
+const select = ({ items, elemIndex, selectedLang, inputChanged, removeItem }) => (
   <div className='Select'>
     <Select
       className="single-select"
@@ -22,11 +22,11 @@ const select = ({ items, elemIndex, inputChanged, removeItem }) => (
                 <SingleLineTextInput
                   isEditing
                   isInitiallySelected
-                  value={item.value}
+                  value={item.value[selectedLang]}
                   onChange={(e) => inputChanged(e, elemIndex, i)}
                 />
               }
-              readView={<SingleLineTextInput isEditing={false} value={item.value} />}
+              readView={<SingleLineTextInput isEditing={false} value={item.value[selectedLang]} />}
             />
           </div>
           <Button

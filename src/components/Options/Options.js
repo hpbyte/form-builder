@@ -22,11 +22,13 @@ const Options = props => {
       break;
     case 'checkbox':
       option = (<Aux>{props.items.map((item, i) => <Checkbox key={item.id} {...item} 
+        selectedLang={props.selectedLanguage}
         inputChanged={(e) => props.onItemInputChanged(e, elementIndex, i)}
         removeItem={() => props.onOptionItemRemoved(elementIndex, item.id)} />)}</Aux>);
       break;
     case 'radio':
       option = (<Aux>{props.items.map((item, i) => <Radio key={item.id} {...item} 
+        selectedLang={props.selectedLanguage}
         inputChanged={(e) => props.onItemInputChanged(e, elementIndex, i)}
         removeItem={() => props.onOptionItemRemoved(elementIndex, item.id)} />)}</Aux>);
       break;
@@ -42,6 +44,10 @@ const Options = props => {
   );
 }
 
+const mapStateToProps = state => ({
+  selectedLanguage: state.selectedLanguage
+});
+
 const mapDispatchToProps = dispatch => {
 	return {
 		onOptionItemAdded: (elemIndex) => dispatch({ type: actionTypes.ADD_OPTION_ITEM, elemIndex }),
@@ -50,4 +56,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Options);
+export default connect(mapStateToProps, mapDispatchToProps)(Options);
