@@ -3,37 +3,20 @@ body {
 }
 
 .Container {
-  /* display: flex; */
   margin: 1rem 0;
 }
-/* 
-.Left {
-  flex: 1;
-}
-
-.Right {
-  flex: 1;
-} */
 
 .Card {
-  /* margin: 0.5rem 0 0.5rem 1rem; */
   padding: 1rem;
   color: #505050;
   background: #fdfdfd;
-  border-radius: 0 15px 0 15px;
   box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.3);
-  /* max-height: 600px; 
-  overflow: auto;*/
+  overflow: scroll;
 }
 
 .Form {  
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
-  /* justify-content: center; */
-}
-
-.MarY {
   margin: 1rem 0;
 }
 
@@ -45,49 +28,4 @@ body {
 
 .Btn {
   margin: 0 0.2rem;
-  /* color: #000;
-  background-color: #fff; */
-  /* cursor: pointer;
-  outline: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
-  border: none; */
 } 
-
-/* 
-.Btn-round {
-  padding: 10px 15px 10px 15px;
-  border: 2px solid #2196F3;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.Btn-round:hover {
-  background-color: #2196F3;
-  color: #fff;
-}
-
-.Selected {
-  background-color: #2196F3;
-  color: #fff;
-}
-
-.Btn-circle {
-  padding: 15px;
-  border-radius: 50%;
-  color: #fff;
-  background-color: #2196F3;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.Btn-circle:hover {
-  color: #2196F3;
-  background-color: #fff;
-} 
-*/

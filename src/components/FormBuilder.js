@@ -18,23 +18,23 @@ class FormBuilder extends Component {
         <Page>
           <Grid>
             <GridColumn medium={6}>
-                <GridColumn>
-                  <LangBtns selectedLanguage={this.props.selectedLanguage} 
-                    changeLanguage={this.props.onLanguageChanged}
-                  />
-                </GridColumn>
-                <GridColumn>
-                  <div className='Form'>
-                    {elements.length > 0 && elements.map((elem, i) => 
-                      <Input key={i} config={elem} elemIndex={i} />
-                    )}
-                  </div>
-                </GridColumn>
-                <GridColumn>
-                  <div className='Btns'>
-                    <Button iconBefore={<AddIcon size='large' />} appearance='primary' onClick={this.props.onElementAdded} className='Btn Btn-circle' />
-                  </div>
-                </GridColumn>
+              <GridColumn>
+                <LangBtns selectedLanguage={this.props.selectedLanguage} 
+                  changeLanguage={this.props.onLanguageChanged}
+                />
+              </GridColumn>
+              <GridColumn>
+                <div className='Form'>
+                  {elements.length > 0 && elements.map((elem, i) => 
+                    <Input key={i} config={elem} elemIndex={i} />
+                  )}
+                </div>
+              </GridColumn>
+              <GridColumn>
+                <div className='Btns'>
+                  <Button iconBefore={<AddIcon size='large' />} appearance='primary' onClick={this.props.onElementAdded} className='Btn Btn-circle' />
+                </div>
+              </GridColumn>
             </GridColumn>
             <GridColumn medium={6}>
               <pre className='Card'>{JSON.stringify(this.props, null, 2)}</pre>

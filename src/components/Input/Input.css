@@ -3,7 +3,7 @@
   background: #fff;
   margin: 1rem 0;
   padding: 0.5rem;
-  border-radius: 0 15px 0 15px;
+  border-radius: 10px;
   -webkit-appearance: none;
   box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.3);
 }
@@ -32,35 +32,11 @@
   margin-left: 1rem;
 }
 
-/* .Input > * {
-  width: 15rem;
-  border: none;
-  border-radius: 0;
-  padding: 0 0 0 10px;
-  line-height: 2.5rem;
-  font-size: 0.9rem;
-  font-weight: bold;
-  outline: 0;
-	-webkit-transition: border 0.3s;
-	transition: border 0.3s;
-} 
-
-.Input input {
-  border: 3px solid #ddd;
-}
-
-.Input input:focus {
-  border: 3px solid #2196F3;  
-  box-shadow: 2px 2px 8px #e0f8ff
-}
-
-*/
 .Actions {
   margin: 1rem 0;
 }
   
 .Actions .Btn {
-  /* margin: 0.2rem; */
  -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
 }

@@ -17,6 +17,7 @@ const Options = props => {
   switch(props.type) {
     case 'select':
       option = <Select {...props}
+        selectedLang={props.selectedLanguage}
         inputChanged={props.onItemInputChanged}
         removeItem={props.onOptionItemRemoved} />;
       break;
